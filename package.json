@@ -32,6 +32,9 @@
   "main": "./lib/index.js",
   "module": "./lib/index.es.js",
   "jsnext:main": "./lib/index.es.js",
+  "react-native": {
+    "./locale-data/index.js": "./locale-data/index.js"
+  },
   "browser": {
     "./locale-data/index": false,
     "./locale-data/index.js": false
@@ -48,8 +51,8 @@
   },
   "dependencies": {
     "intl-format-cache": "^2.0.5",
-    "intl-messageformat": "^1.3.0",
-    "intl-relativeformat": "^1.3.0",
+    "intl-messageformat": "github:jgkim/intl-messageformat#react-native",
+    "intl-relativeformat": "github:jgkim/intl-relativeformat#react-native",
     "invariant": "^2.1.1"
   },
   "peerDependencies": {

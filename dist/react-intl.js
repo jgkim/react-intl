@@ -12,6 +12,10 @@
 
 var React__default = 'default' in React ? React['default'] : React;
 
+if (typeof React === 'undefined') {
+    throw new ReferenceError('React must be loaded before ReactIntl.');
+}
+
 // GENERATED FILE
 var defaultLocaleData = { "locale": "en", "pluralRuleFunction": function pluralRuleFunction(n, ord) {
     var s = String(n).split("."),
@@ -2903,10 +2907,6 @@ var pluralFormatPropTypes = {
     style: oneOf(['cardinal', 'ordinal'])
 };
 
-function interopDefault(ex) {
-	return ex && typeof ex === 'object' && 'default' in ex ? ex['default'] : ex;
-}
-
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
@@ -2964,8 +2964,6 @@ var invariant = function invariant(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 });
 
-var invariant$1 = interopDefault(invariant);
-
 /*
 HTML escaping and shallow-equals implementations are the same as React's
 (on purpose.) Therefore, it has the following Copyright and Licensing:
@@ -3014,7 +3012,7 @@ function invariantIntlContext() {
 
     var intl = _ref.intl;
 
-    invariant$1(intl, '[React Intl] Could not find required `intl` object. ' + '<IntlProvider> needs to exist in the component ancestry.');
+    invariant(intl, '[React Intl] Could not find required `intl` object. ' + '<IntlProvider> needs to exist in the component ancestry.');
 }
 
 function shallowEquals(objA, objB) {
@@ -3094,7 +3092,7 @@ function injectIntl(WrappedComponent) {
         createClass(InjectIntl, [{
             key: 'getWrappedInstance',
             value: function getWrappedInstance() {
-                invariant$1(withRef, '[React Intl] To access the wrapped instance, ' + 'the `{withRef: true}` option must be set when calling: ' + '`injectIntl()`');
+                invariant(withRef, '[React Intl] To access the wrapped instance, ' + 'the `{withRef: true}` option must be set when calling: ' + '`injectIntl()`');
 
                 return this.refs.wrappedInstance;
             }
@@ -3110,12 +3108,11 @@ function injectIntl(WrappedComponent) {
     }(React.Component);
 
     InjectIntl.displayName = 'InjectIntl(' + getDisplayName(WrappedComponent) + ')';
-
     InjectIntl.contextTypes = {
         intl: intlShape
     };
-
     InjectIntl.WrappedComponent = WrappedComponent;
+
 
     return InjectIntl;
 }
@@ -3487,7 +3484,7 @@ function formatMessage(config, state) {
 
     // `id` is a required field of a Message Descriptor.
 
-    invariant$1(id, '[React Intl] An `id` must be provided to format a message.');
+    invariant(id, '[React Intl] An `id` must be provided to format a message.');
 
     var message = messages && messages[id];
     var hasValues = Object.keys(values).length > 0;
@@ -3597,7 +3594,7 @@ var IntlProvider = function (_Component) {
 
         var _this = possibleConstructorReturn(this, (IntlProvider.__proto__ || Object.getPrototypeOf(IntlProvider)).call(this, props, context));
 
-        invariant$1(typeof Intl !== 'undefined', '[React Intl] The `Intl` APIs must be available in the runtime, ' + 'and do not appear to be built-in. An `Intl` polyfill should be loaded.\n' + 'See: http://formatjs.io/guides/runtime-environments/');
+        invariant(typeof Intl !== 'undefined', '[React Intl] The `Intl` APIs must be available in the runtime, ' + 'and do not appear to be built-in. An `Intl` polyfill should be loaded.\n' + 'See: http://formatjs.io/guides/runtime-environments/');
 
         var intlContext = context.intl;
 
@@ -3737,15 +3734,12 @@ var IntlProvider = function (_Component) {
 }(React.Component);
 
 IntlProvider.displayName = 'IntlProvider';
-
 IntlProvider.contextTypes = {
     intl: intlShape
 };
-
 IntlProvider.childContextTypes = {
     intl: intlShape.isRequired
 };
-
 IntlProvider.propTypes = babelHelpers$1['extends']({}, intlConfigPropTypes, {
     children: React.PropTypes.element.isRequired,
     initialNow: React.PropTypes.any
@@ -3804,11 +3798,9 @@ var FormattedDate = function (_Component) {
 }(React.Component);
 
 FormattedDate.displayName = 'FormattedDate';
-
 FormattedDate.contextTypes = {
     intl: intlShape
 };
-
 FormattedDate.propTypes = babelHelpers$1['extends']({}, dateTimeFormatPropTypes, {
     value: React.PropTypes.any.isRequired,
     format: React.PropTypes.string,
@@ -3868,11 +3860,9 @@ var FormattedTime = function (_Component) {
 }(React.Component);
 
 FormattedTime.displayName = 'FormattedTime';
-
 FormattedTime.contextTypes = {
     intl: intlShape
 };
-
 FormattedTime.propTypes = babelHelpers$1['extends']({}, dateTimeFormatPropTypes, {
     value: React.PropTypes.any.isRequired,
     format: React.PropTypes.string,
@@ -4052,11 +4042,9 @@ var FormattedRelative = function (_Component) {
 }(React.Component);
 
 FormattedRelative.displayName = 'FormattedRelative';
-
 FormattedRelative.contextTypes = {
     intl: intlShape
 };
-
 FormattedRelative.propTypes = babelHelpers$1['extends']({}, relativeFormatPropTypes, {
     value: React.PropTypes.any.isRequired,
     format: React.PropTypes.string,
@@ -4064,7 +4052,6 @@ FormattedRelative.propTypes = babelHelpers$1['extends']({}, relativeFormatPropTy
     initialNow: React.PropTypes.any,
     children: React.PropTypes.func
 });
-
 FormattedRelative.defaultProps = {
     updateInterval: 1000 * 10
 };
@@ -4122,11 +4109,9 @@ var FormattedNumber = function (_Component) {
 }(React.Component);
 
 FormattedNumber.displayName = 'FormattedNumber';
-
 FormattedNumber.contextTypes = {
     intl: intlShape
 };
-
 FormattedNumber.propTypes = babelHelpers$1['extends']({}, numberFormatPropTypes, {
     value: React.PropTypes.any.isRequired,
     format: React.PropTypes.string,
@@ -4188,11 +4173,9 @@ var FormattedPlural = function (_Component) {
 }(React.Component);
 
 FormattedPlural.displayName = 'FormattedPlural';
-
 FormattedPlural.contextTypes = {
     intl: intlShape
 };
-
 FormattedPlural.propTypes = babelHelpers$1['extends']({}, pluralFormatPropTypes, {
     value: React.PropTypes.any.isRequired,
 
@@ -4205,7 +4188,6 @@ FormattedPlural.propTypes = babelHelpers$1['extends']({}, pluralFormatPropTypes,
 
     children: React.PropTypes.func
 });
-
 FormattedPlural.defaultProps = {
     style: 'cardinal'
 };
@@ -4340,17 +4322,14 @@ var FormattedMessage = function (_Component) {
 }(React.Component);
 
 FormattedMessage.displayName = 'FormattedMessage';
-
 FormattedMessage.contextTypes = {
     intl: intlShape
 };
-
 FormattedMessage.propTypes = babelHelpers$1['extends']({}, messageDescriptorPropTypes, {
     values: React.PropTypes.object,
     tagName: React.PropTypes.string,
     children: React.PropTypes.func
 });
-
 FormattedMessage.defaultProps = {
     values: {},
     tagName: 'span'
@@ -4437,17 +4416,14 @@ var FormattedHTMLMessage = function (_Component) {
 }(React.Component);
 
 FormattedHTMLMessage.displayName = 'FormattedHTMLMessage';
-
 FormattedHTMLMessage.contextTypes = {
     intl: intlShape
 };
-
 FormattedHTMLMessage.propTypes = babelHelpers$1['extends']({}, messageDescriptorPropTypes, {
     values: React.PropTypes.object,
     tagName: React.PropTypes.string,
     children: React.PropTypes.func
 });
-
 FormattedHTMLMessage.defaultProps = {
     values: {},
     tagName: 'span'

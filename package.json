@@ -1,6 +1,6 @@
 {
   "name": "react-intl",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Internationalize React apps. This library provides React components and an API to format dates, numbers, and strings, including pluralization and handling translations.",
   "keywords": [
     "intl",
@@ -60,8 +60,10 @@
   },
   "devDependencies": {
     "babel-cli": "^6.2.0",
+    "babel-eslint": "^6.1.2",
     "babel-plugin-istanbul": "^2.0.0",
     "babel-plugin-react-intl": "^2.0.0",
+    "babel-plugin-transform-class-properties": "^6.11.5",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.4.0",
     "babel-plugin-transform-es3-member-expression-literals": "^6.3.13",
     "babel-plugin-transform-es3-property-literals": "^6.3.13",
@@ -96,13 +98,14 @@
     "rimraf": "^2.4.2",
     "rollup": "^0.34.10",
     "rollup-plugin-babel": "^2.3.9",
-    "rollup-plugin-commonjs": "^3.0.0",
+    "rollup-plugin-commonjs": "^4.0.1",
     "rollup-plugin-memory": "^2.0.0",
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-replace": "^1.1.0",
     "rollup-plugin-uglify": "^1.0.0",
     "serialize-javascript": "^1.1.1",
-    "superagent": "^2.0.0"
+    "superagent": "^2.0.0",
+    "watchify": "^3.7.0"
   },
   "scripts": {
     "clean": "rimraf src/en.js coverage/ dist/ lib/ locale-data/",
